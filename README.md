@@ -28,7 +28,19 @@ class MainApplication: Application() {
 
 
 ## 只适配 这个 View 及其 子 view
+
+*谨慎使用*，createCustomDensityContext 返回的 context 不是 Activity，
+如果 子view 有地方拿 context 当做 Activity 使用就会有问题
+
 ```kotlin
+
+/**
+ *
+ * 只适配 这个 View 及其 子 view
+ * 谨慎使用，createCustomDensityContext 返回的 context 不是 Activity，
+ * 如果 子view 有地方拿 context 当做 Activity 使用就会有问题
+ *
+ */
 class FooView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context.createCustomDensityContext(), attrs)
